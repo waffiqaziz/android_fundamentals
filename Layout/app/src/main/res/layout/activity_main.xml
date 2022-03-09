@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/activity_main"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@android:color/white"
+  tools:context="com.dicoding.layout.MainActivity">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/pixel_google"
+        android:contentDescription="@string/google_pixel" />
+
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/gray"
+        android:drawablePadding="4dp"
+        android:gravity="center_vertical"
+        android:padding="8dp"
+        android:text="@string/_6_photos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/white"
+        app:drawableStartCompat="@drawable/ic_collections_white_18dp" />
+
+
+    </FrameLayout>
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginBottom="8dp"
+      android:text="@string/_735"
+      android:textColor="@android:color/black"
+      android:textSize="32sp" />
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginBottom="16dp"
+      android:text="@string/stock_hanya_5_buah"
+      android:textSize="12sp" />
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginBottom="16dp"
+      android:lineSpacingMultiplier="1.4"
+      android:text="@string/content_text"
+      android:textColor="@android:color/black" />
+
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginBottom="8dp"
+      android:text="@string/spesifikasi"
+      android:textSize="12sp" />
+
+    <TableLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="16dp"
+      android:layout_marginRight="16dp"
+      android:layout_marginBottom="16dp">
+
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
+          android:text="@string/display"
+          android:textSize="14sp" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/content_specs_display"
+          android:textColor="@android:color/black"
+          android:textSize="14sp" />
+      </TableRow>
+
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="16dp"
+          android:text="@string/size"
+          android:textSize="14sp" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/content_specs_size"
+          android:textColor="@android:color/black"
+          android:textSize="14sp" />
+      </TableRow>
+
+      <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
+          android:text="@string/battery"
+          android:textSize="14sp" />
+
+        <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="@string/content_specs_battery"
+          android:textColor="@android:color/black"
+          android:textSize="14sp" />
+      </TableRow>
+    </TableLayout>
+  </LinearLayout>
+</ScrollView>

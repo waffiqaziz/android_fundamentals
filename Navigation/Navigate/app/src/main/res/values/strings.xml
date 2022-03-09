@@ -1,0 +1,40 @@
+<resources>
+  <string name="app_name">Navigation</string>
+  <string name="home_fragment">Ini Home Fragment</string>
+  <string name="to_profile">Ke Activity Profile Activity</string>
+  <string name="to_category">Ke fragment Category</string>
+  <string name="this_profile">Ini activity Profile</string>
+  <string name="this_category">Ini fragment Category</string>
+  <string name="category_lifestyle">Ke fragment Lifestyle</string>
+  <string name="category_sport">Ke fragment Sport</string>
+  <string name="category_name">Category Name</string>
+  <string name="category_description">Category Description</string>
+  <string name="to_home">Ke fragment Home</string>
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="profile_activity">Profile Activity</string>
+  <string name="action_bar">Action Bar</string>
+  <string name="navigation">Navigation</string>
+  <string name="to_action_bar">To Action Bar</string>
+  <string name="to_navigation">To Navigation</string>
+  <string name="ini_navigation_home_fragment">Ini Navigation Home Fragment</string>
+  <string name="this_activity">Ini adalah menu activity</string>
+  <string name="this_fragment">Ini adalah menu fragment</string>
+  <string name="search">Search</string>
+  <string name="menu_1">Menu 1</string>
+  <string name="menu_2">Menu 2</string>
+  <string name="this_menu_activity">This Menu Activity</string>
+  <string name="search_hint">Masukkan kata</string>
+  <string name="title_activity_main_drawer">MainDrawerActivity</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="nav_header_title">Android Studio</string>
+  <string name="nav_header_subtitle">android.studio@android.com</string>
+  <string name="nav_header_desc">Navigation header</string>
+  <string name="action_settings">Settings</string>
+
+  <string name="menu_home">Home</string>
+  <string name="menu_gallery">Gallery</string>
+  <string name="menu_slideshow">Slideshow</string>
+  <string name="to_navigation_drawer">To Navigation Drawer</string>
+</resources>

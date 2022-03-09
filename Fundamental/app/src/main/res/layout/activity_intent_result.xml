@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".IntentResultActivity">
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:orientation="vertical">
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="30dp"
+      android:text="@string/ini_adalah_intent_result"
+      android:textColor="@color/black"
+      android:textSize="30sp"
+      android:textStyle="bold" />
+
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginBottom="10dp"
+      android:text="@string/choose"
+      android:textColor="@color/black"
+      android:textSize="30sp"
+      android:textStyle="bold" />
+
+    <RadioGroup
+      android:id="@+id/rg_number"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="10dp">
+
+      <RadioButton
+        android:id="@+id/rb_50"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_50"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+      <RadioButton
+        android:id="@+id/rb_100"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_100"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+      <RadioButton
+        android:id="@+id/rb_200"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_200"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+      <RadioButton
+        android:id="@+id/rb_300"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_300"
+        android:textColor="@color/black"
+        android:textSize="30sp" />
+
+    </RadioGroup>
+
+    <Button
+      android:id="@+id/btn_choose"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:layout_marginTop="20dp"
+      android:text="@string/submit" />
+
+  </LinearLayout>
+</RelativeLayout>
