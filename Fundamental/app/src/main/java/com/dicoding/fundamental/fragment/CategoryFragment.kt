@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.commit
 import com.dicoding.fundamental.R
 
 class CategoryFragment : Fragment(), View.OnClickListener {
@@ -34,11 +35,18 @@ class CategoryFragment : Fragment(), View.OnClickListener {
       mDetailCategoryFragment.arguments = mBundle
       mDetailCategoryFragment.description = description
 
+//      val mFragmentManager = parentFragmentManager
+//      mFragmentManager?.beginTransaction()?.apply {
+//        replace(R.id.frame_container, mDetailCategoryFragment, DetailCategoryFragment::class.java.simpleName)
+//        addToBackStack(null)
+//        commit()
+//      }
+
+      // cara android ktx
       val mFragmentManager = parentFragmentManager
-      mFragmentManager?.beginTransaction()?.apply {
-        replace(R.id.frame_container, mDetailCategoryFragment, DetailCategoryFragment::class.java.simpleName)
+      mFragmentManager.commit {
         addToBackStack(null)
-        commit()
+        replace(R.id.frame_container, mDetailCategoryFragment, DetailCategoryFragment::class.java.simpleName)
       }
     }
   }

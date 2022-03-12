@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.fragment.app.commit
 import com.dicoding.fundamental.R
 
 class HomeFragment : Fragment(), View.OnClickListener {
@@ -32,12 +33,21 @@ class HomeFragment : Fragment(), View.OnClickListener {
         Toast.makeText(activity,"tombol tertekan", Toast.LENGTH_SHORT).show()
 
         val mCategoryFragment = CategoryFragment()
-        val mFragmentManager = parentFragmentManager
-        mFragmentManager.beginTransaction().apply {
-          replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
-          addToBackStack(null)
-          commit()
-        }
+
+        // cara biasa
+//          val mFragmentManager = parentFragmentManager
+//          mFragmentManager.beginTransaction().apply {
+//            replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
+//            addToBackStack(null)
+//            commit()
+//          }
+
+        // cara android ktx
+          val mFragmentManager = parentFragmentManager
+          mFragmentManager.commit {
+            addToBackStack(null)
+            replace(R.id.frame_container, mCategoryFragment, CategoryFragment::class.java.simpleName)
+          }
       }
     }
   }
