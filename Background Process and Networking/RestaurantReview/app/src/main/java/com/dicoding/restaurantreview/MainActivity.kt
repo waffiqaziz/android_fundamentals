@@ -100,7 +100,6 @@ class MainActivity : AppCompatActivity() {
         .load("https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}")
         .into(ivPicture)
     }
-
   }
 
   private fun setReviewData(consumerReviews: List<CustomerReviewsItem>) {

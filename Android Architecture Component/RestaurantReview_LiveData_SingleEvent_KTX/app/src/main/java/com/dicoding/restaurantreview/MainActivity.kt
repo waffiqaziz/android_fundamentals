@@ -25,18 +25,6 @@ class MainActivity : AppCompatActivity() {
 
     supportActionBar?.hide()
 
-    //  inisialisasi ViewModel dan observe setiap data
-    // cara lama
-//      val mainViewModel = ViewModelProvider(
-//        this,
-//        ViewModelProvider.NewInstanceFactory()
-//      )
-//        .get(MainViewModel::class.java)
-
-
-
-    //cara baru
-
     mainViewModel.restaurant.observe(this, {
       setRestaurantData(it)
     })

@@ -37,24 +37,24 @@ class MainActivity : AppCompatActivity() {
 
     //cara baru
 
-    mainViewModel.restaurant.observe(this, {
+    mainViewModel.restaurant.observe(this) {
       setRestaurantData(it)
-    })
+    }
 
     val layoutManager = LinearLayoutManager(this)
     binding.rvReview.layoutManager = layoutManager
     val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
     binding.rvReview.addItemDecoration(itemDecoration)
 
-    mainViewModel.listReview.observe(this, {
+    mainViewModel.listReview.observe(this) {
       setReviewData(it)
-    })
+    }
 
-    mainViewModel.isLoading.observe(this, {
+    mainViewModel.isLoading.observe(this) {
       showLoading(it)
-    })
+    }
 
-    mainViewModel.snackbarText.observe(this, {
+    mainViewModel.snackbarText.observe(this) {
       it.getContentIfNotHandled()?.let { snackBarText ->
         Snackbar.make(
           window.decorView.rootView,
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
           Snackbar.LENGTH_SHORT
         ).show()
       }
-    })
+    }
 
     binding.btnSend.setOnClickListener {
       mainViewModel.postReview(binding.edReview.text.toString())

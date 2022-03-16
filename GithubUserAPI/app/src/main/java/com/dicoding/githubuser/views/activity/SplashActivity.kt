@@ -1,4 +1,4 @@
-package com.dicoding.githubuser
+package com.dicoding.githubuser.views.activity
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -8,12 +8,14 @@ import android.os.Looper
 import android.view.Window
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import com.dicoding.githubuser.MainActivity
+import com.dicoding.githubuser.R
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val timeToWait = 2000L
+    val timeToWait = 2000L // 2 second
 
     requestWindowFeature(Window.FEATURE_NO_TITLE)// hide title
     supportActionBar?.hide() //hide title bar

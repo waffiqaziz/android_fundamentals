@@ -15,12 +15,12 @@ class ReviewAdapter(private val listReview: List<String>) : RecyclerView.Adapter
   }
 
   override fun onBindViewHolder(viewHolder: ViewHolder, position:Int){
-    binding.tvItem.text = listReview[position]
+    viewHolder.binding.tvItem.text = listReview[position]
   }
   
   override fun getItemCount() = listReview.size
   
-  class ViewHolder(binding: ItemReviewBinding) :
+  class ViewHolder(var binding: ItemReviewBinding) :
     RecyclerView.ViewHolder(binding.root)
 
 }
