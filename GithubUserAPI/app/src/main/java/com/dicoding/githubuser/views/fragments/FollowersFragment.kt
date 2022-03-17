@@ -1,25 +1,27 @@
 package com.dicoding.githubuser.views.fragments
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.dicoding.githubuser.ItemsItem
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.githubuser.R
-import com.dicoding.githubuser.UserResponse
 import com.dicoding.githubuser.databinding.FragmentFollowersBinding
-import com.dicoding.githubuser.views.activity.DetailUserActivity
+import com.dicoding.githubuser.model.UserResponse
+import com.dicoding.githubuser.views.activity.DetailUserActivity.Companion.EXTRA_USER
 import com.dicoding.githubuser.views.adapter.DetailUserAdapter
+import com.dicoding.githubuser.views.viewmodel.FollowersViewModel
+import com.google.android.material.snackbar.Snackbar
 
 
 class FollowersFragment : Fragment() {
 
   private var _binding: FragmentFollowersBinding? = null
+  private val followersViewModel: FollowersViewModel by activityViewModels()
 
-  // This property is only valid between onCreateView and
-  // onDestroyView.
   private val binding get() = _binding!!
 
   override fun onCreateView(
@@ -33,6 +35,41 @@ class FollowersFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
+    val args = arguments
+    val username = args?.getString(EXTRA_USER).toString()
+
+    followersViewModel.itemFollowers.observe(viewLifecycleOwner) {
+      setFollowers(it)
+    }
+
+    setupRecycleView()
+
+    followersViewModel.isLoading.observe(viewLifecycleOwner) {
+      showLoading(it)
+    }
+
+    // find user followers
+    followersViewModel.findFollowers(username)
+
+    followersViewModel.snackbarText.observe(viewLifecycleOwner) {
+      it.getContentIfNotHandled()?.let { snackBarText :String ->
+        val snackBar =
+          Snackbar.make(
+            requireActivity().findViewById(R.id.followers),
+            snackBarText,
+            Snackbar.LENGTH_LONG
+          )
+        snackBar.show()
+      }
+    }
+  }
+
+  private fun setupRecycleView() {
+    val layoutManager = LinearLayoutManager(activity)
+    binding.rvUsers.layoutManager = layoutManager
+    val itemDecoration = DividerItemDecoration(activity, layoutManager.orientation)
+    binding.rvUsers.addItemDecoration(itemDecoration)
   }
 
   private fun setFollowers(itemUser: List<UserResponse>) {
@@ -45,18 +82,22 @@ class FollowersFragment : Fragment() {
       listUser.add(dataUser)
     }
 
-    val adapter =
-      DetailUserAdapter(listUser ,object : DetailUserAdapter.OnItemClickCallback{
-        override fun onItemClicked(data: ItemsItem) {
-          val moveUserDetail = Intent(activity, DetailUserActivity::class.java)
-          moveUserDetail.putExtra(DetailUserActivity.EXTRA_USER, data)
-          startActivity(moveUserDetail)
-        }
-      })
+    val adapter = DetailUserAdapter(listUser)
     binding.rvUsers.adapter = adapter
   }
 
-  companion object {
-    const val ARG_SECTION_NUMBER = "section_number"
+  override fun onDestroyView() {
+    super.onDestroyView()
+    _binding = null
+  }
+
+  private fun showLoading(isLoading: Boolean) {
+    if (isLoading) {
+      binding.progressBar.visibility = View.VISIBLE
+      binding.rvUsers.visibility = View.INVISIBLE
+    } else {
+      binding.progressBar.visibility = View.GONE
+      binding.rvUsers.visibility = View.VISIBLE
+    }
   }
 }

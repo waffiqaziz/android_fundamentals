@@ -12,6 +12,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.githubuser.databinding.ActivityMainBinding
+import com.dicoding.githubuser.model.ItemsItem
 import com.dicoding.githubuser.views.activity.DetailUserActivity
 import com.dicoding.githubuser.views.adapter.UserAdapter
 import com.dicoding.githubuser.views.viewmodel.MainViewModel
@@ -90,9 +91,6 @@ class MainActivity : AppCompatActivity() {
         user.id,
         user.login,
         user.avatarUrl,
-        user.url,
-        user.followingUrl,
-        user.followersUrl
       )
       listUser.add(dataUser)
     }

@@ -1,4 +1,4 @@
-package com.dicoding.githubuser
+package com.dicoding.githubuser.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -23,14 +23,5 @@ data class ItemsItem(
 
 	@field:SerializedName("avatar_url")
 	val avatarUrl: String,
-
-	@field:SerializedName("url")
-	val url: String,
-
-	@field:SerializedName("following_url")
-	val followingUrl: String,
-
-	@field:SerializedName("followers_url")
-	val followersUrl: String,
 
 ): Parcelable

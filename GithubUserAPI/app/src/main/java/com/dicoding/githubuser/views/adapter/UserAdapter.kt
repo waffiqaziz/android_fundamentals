@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dicoding.githubuser.ItemsItem
+import com.dicoding.githubuser.model.ItemsItem
 import com.dicoding.githubuser.databinding.ItemRowUserBinding
 
 class UserAdapter(
@@ -20,7 +20,7 @@ class UserAdapter(
     return ViewHolder(binding)
   }
 
-  class ViewHolder(var binding: ItemRowUserBinding) :
+  class ViewHolder(private var binding: ItemRowUserBinding) :
     RecyclerView.ViewHolder(binding.root){
     fun onBind(user: ItemsItem, listener: OnItemClickCallback){
       Glide.with(binding.root.context)
