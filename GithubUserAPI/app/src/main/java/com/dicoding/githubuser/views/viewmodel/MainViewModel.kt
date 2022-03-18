@@ -23,10 +23,10 @@ class MainViewModel : ViewModel() {
   val snackbarText: LiveData<Event<String>> = _snackbarText
 
   init {
-    findUser("")
+    searchUser("")
   }
 
-  fun findUser(query: String) {
+  fun searchUser(query: String) {
     if (query.isNotEmpty()) {
       _isLoading.value = true
       val client = ApiConfig.getApiService().getSearchUser(query)

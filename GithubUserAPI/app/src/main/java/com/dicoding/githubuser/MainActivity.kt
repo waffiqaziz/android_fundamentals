@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
     mainViewModel.snackbarText.observe(this) {
       it.getContentIfNotHandled()?.let { snackBarText ->
         Snackbar.make(
-          window.decorView.rootView,
+          findViewById(R.id.rv_users),
           snackBarText,
           Snackbar.LENGTH_SHORT
         ).show()
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
     searchView.queryHint = resources.getString(R.string.search_hint)
     searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
       override fun onQueryTextSubmit(query: String): Boolean {
-        mainViewModel.findUser(query)
+        mainViewModel.searchUser(query)
         searchView.clearFocus()
         return true
       }
@@ -107,12 +107,14 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun showLoading(isLoading: Boolean) {
-    if (isLoading) {
-      binding.progressBar.visibility = View.VISIBLE
-      binding.rvUsers.visibility = View.INVISIBLE
-    } else {
-      binding.progressBar.visibility = View.GONE
-      binding.rvUsers.visibility = View.VISIBLE
+    binding.apply {
+      if (isLoading) {
+        progressBar.visibility = View.VISIBLE
+        rvUsers.visibility = View.INVISIBLE
+      } else {
+        progressBar.visibility = View.GONE
+        rvUsers.visibility = View.VISIBLE
+      }
     }
   }
 }

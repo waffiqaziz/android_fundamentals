@@ -21,10 +21,6 @@ class FollowersViewModel : ViewModel() {
   private val _snackbarText = MutableLiveData<Event<String>>()
   val snackbarText: LiveData<Event<String>> = _snackbarText
 
-  init{
-    findFollowers("")
-  }
-
   fun findFollowers(query: String) {
     if (query.isNotEmpty()) {
       _isLoading.value = true

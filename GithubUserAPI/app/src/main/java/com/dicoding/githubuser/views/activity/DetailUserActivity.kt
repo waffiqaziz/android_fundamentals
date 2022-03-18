@@ -1,6 +1,5 @@
 package com.dicoding.githubuser.views.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
@@ -20,7 +19,6 @@ class DetailUserActivity : AppCompatActivity() {
 
   private val detailViewModel by viewModels<DetailUserViewModel>()
 
-  @SuppressLint("ShowToast")
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = ActivityDetailUserBinding.inflate(layoutInflater)
@@ -46,15 +44,15 @@ class DetailUserActivity : AppCompatActivity() {
     detailViewModel.setUserDetail(user.login)
     detailViewModel.userDetail.observe(this) {
       if (it != null) {
-        val text = "@" + it.login
+        val text = "@${it.login}"
         binding.apply {
           tvFollowers.text = it.followers.toString()
           tvFollowing.text = it.following.toString()
           tvName.text = it.name
           tvUsername.text = text
-          tvCompany.text = it.company?: "-"
+          tvCompany.text = it.company ?: "-"
           tvRepository.text = it.publicRepos.toString()
-          tvLocation.text = it.location?: "-"
+          tvLocation.text = it.location ?: "-"
           Glide.with(ivAvatar)
             .load(it.avatarUrl) // URL Avatar
             .circleCrop() // change avatar to circle
@@ -64,8 +62,9 @@ class DetailUserActivity : AppCompatActivity() {
     }
 
     detailViewModel.snackbarText.observe(this) {
-      it.getContentIfNotHandled()?.let { snackBarText :String ->
-        val snackBar = Snackbar.make(window.decorView.rootView, snackBarText, Snackbar.LENGTH_INDEFINITE)
+      it.getContentIfNotHandled()?.let { snackBarText: String ->
+        val snackBar =
+          Snackbar.make(findViewById(R.id.view_pager), snackBarText, Snackbar.LENGTH_INDEFINITE)
         snackBar.setAction("Back") {
           finish()
         }
@@ -87,14 +86,14 @@ class DetailUserActivity : AppCompatActivity() {
   }
 
   private fun showLoading(isLoading: Boolean) {
-    binding.apply{
+    binding.apply {
       if (isLoading) {
         progressBar.visibility = View.VISIBLE
         identity.visibility = View.INVISIBLE
         popView.visibility = View.INVISIBLE
         tabLayoutViewPager.visibility = View.INVISIBLE
       } else {
-        progressBar.visibility = View.GONE
+        progressBar.visibility = View.INVISIBLE
         identity.visibility = View.VISIBLE
         popView.visibility = View.VISIBLE
         tabLayoutViewPager.visibility = View.VISIBLE

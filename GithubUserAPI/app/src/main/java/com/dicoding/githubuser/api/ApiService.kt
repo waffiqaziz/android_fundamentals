@@ -9,27 +9,27 @@ import retrofit2.http.*
 
 interface ApiService {
   @GET("search/users")
-  @Headers("Authorization: ${BuildConfig.API_KEY}")
+  @Headers("Authorization: token ${BuildConfig.API_KEY}")
   fun getSearchUser(
     @Query("q") search: String,
     @Query("per_page") perPage: Int = 100
   ): Call<GitHubResponse>
 
   @GET("users/{login}")
-  @Headers("Authorization: ${BuildConfig.API_KEY}")
+  @Headers("Authorization: token ${BuildConfig.API_KEY}")
   fun getDetailUser(
     @Path("login") login: String
   ): Call<UserDetailResponse>
 
   @GET("users/{username}/followers")
-  @Headers("Authorization: ${BuildConfig.API_KEY}")
+  @Headers("Authorization: token ${BuildConfig.API_KEY}")
   fun getFollowers(
     @Path("username") username: String,
     @Query("per_page") perPage: Int = 100
   ): Call<List<UserResponse>>
 
   @GET("users/{username}/following")
-  @Headers("Authorization: ${BuildConfig.API_KEY}")
+  @Headers("Authorization: token ${BuildConfig.API_KEY}")
   fun getFollowing(
     @Path("username") username: String,
     @Query("per_page") perPage: Int = 100

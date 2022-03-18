@@ -19,7 +19,7 @@ class DetailUserAdapter(
     return ViewHolder(binding)
   }
 
-  class ViewHolder(private var binding: ItemRowUserBinding) :
+  inner class ViewHolder(private var binding: ItemRowUserBinding) :
     RecyclerView.ViewHolder(binding.root){
     fun onBind(user: UserResponse){
       Glide.with(binding.root.context)

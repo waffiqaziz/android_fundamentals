@@ -53,14 +53,12 @@ class FollowersFragment : Fragment() {
     followersViewModel.findFollowers(username)
 
     followersViewModel.snackbarText.observe(viewLifecycleOwner) {
-      it.getContentIfNotHandled()?.let { snackBarText :String ->
-        val snackBar =
-          Snackbar.make(
-            requireActivity().findViewById(R.id.followers),
-            snackBarText,
-            Snackbar.LENGTH_LONG
-          )
-        snackBar.show()
+      it.getContentIfNotHandled()?.let { snackBarText ->
+        Snackbar.make(
+          requireActivity().findViewById(R.id.followers),
+          snackBarText,
+          Snackbar.LENGTH_LONG
+        ).show()
       }
     }
   }

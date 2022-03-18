@@ -18,10 +18,6 @@ class FollowingViewModel : ViewModel() {
   private val _isLoading = MutableLiveData<Boolean>()
   val isLoading: LiveData<Boolean> = _isLoading
 
-  init{
-    findFollowing("")
-  }
-
   fun findFollowing(query: String) {
     if (query.isNotEmpty()) {
       _isLoading.value = true

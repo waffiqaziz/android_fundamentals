@@ -154,6 +154,7 @@
         style="@style/TextViewRegular"
         tools:text="@string/following" />
     </LinearLayout>
+
   </RelativeLayout>
 
   <LinearLayout
