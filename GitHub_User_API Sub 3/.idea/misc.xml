@@ -3,12 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/drawable/ic_favorite_border.xml" value="0.165" />
+        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/drawable/ic_favorite_fill.xml" value="0.122" />
+        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/drawable/ic_favorite_no_fill.xml" value="0.122" />
         <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/drawable/ic_material_location_city.xml" value="0.109" />
         <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/drawable/ic_material_work.xml" value="0.194" />
         <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/drawable/shadow.xml" value="0.109" />
-        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/activity_detail_user.xml" value="0.33" />
+        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/activity_detail_user.xml" value="0.22" />
+        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/activity_favorite.xml" value="0.1140625" />
         <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/activity_main.xml" value="0.15703125" />
         <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/activity_setting.xml" value="0.15703125" />
+        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/activity_splash.xml" value="0.209375" />
+        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/fragment_followers.xml" value="0.209375" />
+        <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/fragment_following.xml" value="0.209375" />
         <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/layout/item_row_user.xml" value="0.33" />
         <entry key="..\:/pem/AndroidStudio/Dicoding/GitHub_User_API Sub 3/app/src/main/res/menu/option_menu.xml" value="0.2" />
         <entry key="..\:/pem/AndroidStudio/Dicoding/GithubUser/app/src/main/res/drawable-v24/ic_arrow.xml" value="0.20046296296296295" />

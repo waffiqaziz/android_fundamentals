@@ -13,11 +13,12 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.githubuser.databinding.ActivityMainBinding
-import com.dicoding.githubuser.service.model.ItemsItem
-import com.dicoding.githubuser.views.activity.DetailUserActivity
-import com.dicoding.githubuser.views.activity.SettingActivity
-import com.dicoding.githubuser.views.adapter.UserAdapter
-import com.dicoding.githubuser.viewmodel.MainViewModel
+import com.dicoding.githubuser.data.remote.response.ItemsItem
+import com.dicoding.githubuser.ui.activity.DetailUserActivity
+import com.dicoding.githubuser.ui.activity.FavoriteActivity
+import com.dicoding.githubuser.ui.activity.SettingActivity
+import com.dicoding.githubuser.ui.adapter.UserAdapter
+import com.dicoding.githubuser.ui.viewmodel.MainViewModel
 import com.google.android.material.snackbar.Snackbar
 
 
@@ -35,13 +36,9 @@ class MainActivity : AppCompatActivity() {
     // set title action bar
     supportActionBar?.title = getString(R.string.github_users)
 
-    binding.rvUsers.setHasFixedSize(true)
-
     mainViewModel.itemUser.observe(this) {
       setUserData(it)
     }
-
-    setupRecycleView()
 
     mainViewModel.isLoading.observe(this) {
       showLoading(it)
@@ -56,9 +53,13 @@ class MainActivity : AppCompatActivity() {
         ).show()
       }
     }
+
+    setupRecycleView()
   }
 
   private fun setupRecycleView() {
+    binding.rvUsers.setHasFixedSize(true)
+
     val layoutManager = LinearLayoutManager(this)
     binding.rvUsers.layoutManager = layoutManager
     val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)
@@ -91,9 +92,14 @@ class MainActivity : AppCompatActivity() {
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     // Handle item selection
     return when (item.itemId) {
-      R.id.menu_setting -> {
-        val moveSetting = Intent(this@MainActivity, SettingActivity::class.java)
-        startActivity(moveSetting)
+      R.id.btn_setting -> {
+        val moveToSetting = Intent(this@MainActivity, SettingActivity::class.java)
+        startActivity(moveToSetting)
+        true
+      }
+      R.id.btn_favorite -> {
+        val moveToFavorite = Intent(this@MainActivity, FavoriteActivity::class.java)
+        startActivity(moveToFavorite)
         true
       }
       else -> super.onOptionsItemSelected(item)

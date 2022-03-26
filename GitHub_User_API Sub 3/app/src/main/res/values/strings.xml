@@ -19,5 +19,14 @@
   <string name="search_hint">Username User</string>
 
   <string name="dark_mode">Dark Mode</string>
+  <string name="button_to_add_user_to_favorite">button to add user to favorite</string>
+  <string name="favorite">Favorite</string>
+  <string name="favorite_user">Favorite User</string>
 
+  <string name="message_delete">Are you sure delete this user from favorite?</string>
+  <string name="deleted">User has been deleted from favorite</string>
+  <string name="delete">Delete</string>
+
+  <string name="yes">Yes</string>
+  <string name="no">No</string>
 </resources>

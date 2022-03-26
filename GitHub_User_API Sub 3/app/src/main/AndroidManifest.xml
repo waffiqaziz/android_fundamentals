@@ -12,16 +12,19 @@
     android:supportsRtl="true"
     android:theme="@style/Theme.GithubUser">
     <activity
-      android:name=".views.activity.SettingActivity"
+      android:name=".ui.activity.FavoriteActivity"
+      android:exported="false" />
+    <activity
+      android:name=".ui.activity.SettingActivity"
       android:exported="false" />
     <activity
       android:name=".MainActivity"
       android:exported="false" />
     <activity
-      android:name=".views.activity.DetailUserActivity"
+      android:name=".ui.activity.DetailUserActivity"
       android:exported="false" />
     <activity
-      android:name=".views.activity.SplashActivity"
+      android:name=".ui.activity.SplashActivity"
       android:exported="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
