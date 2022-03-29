@@ -33,12 +33,13 @@ class MainActivity : AppCompatActivity() {
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
-    // set title action bar
     supportActionBar?.title = getString(R.string.github_users)
 
     mainViewModel.itemUser.observe(this) {
       setUserData(it)
     }
+
+    setupRecycleView()
 
     mainViewModel.isLoading.observe(this) {
       showLoading(it)
@@ -53,13 +54,10 @@ class MainActivity : AppCompatActivity() {
         ).show()
       }
     }
-
-    setupRecycleView()
   }
 
   private fun setupRecycleView() {
     binding.rvUsers.setHasFixedSize(true)
-
     val layoutManager = LinearLayoutManager(this)
     binding.rvUsers.layoutManager = layoutManager
     val itemDecoration = DividerItemDecoration(this, layoutManager.orientation)

@@ -6,15 +6,15 @@ import com.dicoding.githubuser.data.local.entity.FavoriteEntity
 
 @Dao
 interface FavoriteDao {
-  @Query("SELECT * FROM favorite ORDER BY login DESC")
+  @Query("SELECT * FROM favorite ORDER BY login ASC")
   fun getFavorite(): LiveData<List<FavoriteEntity>>
 
-  @Query("SELECT count(*) FROM favorite WHERE id = :id")
-  fun isFavorited(id: Int): Int
+  @Query("SELECT EXISTS(SELECT * FROM favorite WHERE id = :id)")
+  suspend fun isFavorite(id: Int): Boolean
 
   @Insert(onConflict = OnConflictStrategy.IGNORE)
-  fun insertFavorite(favoriteEntity: FavoriteEntity)
+  suspend fun insertFavorite(favoriteEntity: FavoriteEntity)
 
-  @Query("DELETE FROM favorite WHERE id = :id")
-  fun deleteUserFavorite(id: Int): Int
+  @Delete
+  suspend fun deleteUserFavorite(fav: FavoriteEntity)
 }

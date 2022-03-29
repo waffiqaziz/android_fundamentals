@@ -25,8 +25,10 @@
 
   <string name="message_delete">Are you sure delete this user from favorite?</string>
   <string name="deleted">User has been deleted from favorite</string>
+  <string name="added">User has been added to favorite</string>
   <string name="delete">Delete</string>
 
   <string name="yes">Yes</string>
   <string name="no">No</string>
+  <string name="no_data">no user favorites</string>
 </resources>

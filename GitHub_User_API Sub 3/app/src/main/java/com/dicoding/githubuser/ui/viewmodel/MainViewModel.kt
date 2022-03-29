@@ -12,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel: ViewModel() {
+class MainViewModel : ViewModel() {
   private val _itemUser = MutableLiveData<List<ItemsItem>>()
   val itemUser: LiveData<List<ItemsItem>> = _itemUser
 
@@ -39,7 +39,7 @@ class MainViewModel: ViewModel() {
           if (response.isSuccessful) {
             val responseBody = response.body()
             if (responseBody != null) {
-              if (responseBody.totalCount == 0){
+              if (responseBody.totalCount == 0) {
                 _snackBarText.value = Event(NO_USER)
               }
               _itemUser.value = response.body()?.items

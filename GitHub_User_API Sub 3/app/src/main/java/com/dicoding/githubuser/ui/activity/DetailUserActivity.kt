@@ -1,7 +1,6 @@
 package com.dicoding.githubuser.ui.activity
 
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
@@ -22,13 +21,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class DetailUserActivity : AppCompatActivity() {
+
   private lateinit var binding: ActivityDetailUserBinding
 
   private val detailViewModel by viewModels<DetailUserViewModel>()
 
   // param helper
-  private var isFavorited = false
-
+  private var isFavorite = false
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -36,7 +35,6 @@ class DetailUserActivity : AppCompatActivity() {
     setContentView(binding.root)
 
     supportActionBar?.title = getString(R.string.detail_user)
-    // showing back button in action bar
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     // get data user from MainActivity/FavoriteActivity
@@ -45,7 +43,6 @@ class DetailUserActivity : AppCompatActivity() {
     lateinit var username: String
     lateinit var avatarURL: String
     val userId: Int
-
     if (intent.getParcelableExtra<ItemsItem>(EXTRA_USER) != null) {
       user = intent.getParcelableExtra<ItemsItem>(EXTRA_USER) as ItemsItem
       username = user.login
@@ -57,18 +54,14 @@ class DetailUserActivity : AppCompatActivity() {
       username = userFav.login
       userId = userFav.id
     }
-
-    detailViewModel.isLoading.observe(this) {
-      showLoading(it)
-    }
+    val fav = FavoriteEntity(userId, username, avatarURL)
 
     // set user detail
-    setUserDetail(username)
+    setUserDetail(fav.login)
 
-
-    // check is user has been favorited/no
-    isFavorited = false
-    checkIsFavorited(userId)
+    // check is user has been favorite/no
+    isFavorite = false
+    checkIsFavorite(fav.id)
 
     detailViewModel.snackBarText.observe(this) {
       it.getContentIfNotHandled()?.let { snackBarText: String ->
@@ -83,11 +76,11 @@ class DetailUserActivity : AppCompatActivity() {
 
     // put username to bundle
     val bundle = Bundle()
-    bundle.putString(EXTRA_USER, username)
+    bundle.putString(EXTRA_USER, fav.login)
 
     setAdapter(bundle)
 
-    btnFavoriteAction(userId, username, avatarURL)
+    btnFavoriteAction(fav)
   }
 
   private fun setAdapter(bundle: Bundle) {
@@ -127,61 +120,45 @@ class DetailUserActivity : AppCompatActivity() {
     return true
   }
 
-  private fun showLoading(isLoading: Boolean) {
-    binding.apply {
-      if (isLoading) {
-        progressBar.visibility = View.VISIBLE
-        identity.visibility = View.INVISIBLE
-        popView.visibility = View.INVISIBLE
-        tabLayoutViewPager.visibility = View.INVISIBLE
-      } else {
-        progressBar.visibility = View.INVISIBLE
-        identity.visibility = View.VISIBLE
-        popView.visibility = View.VISIBLE
-        tabLayoutViewPager.visibility = View.VISIBLE
-      }
-    }
-  }
-
-  private fun checkIsFavorited(id: Int) {
+  private fun checkIsFavorite(id: Int) {
     CoroutineScope(Dispatchers.IO).launch {
-      val result = detailViewModel.checkIsFavorited(id)
+      val result = detailViewModel.checkIsFavorite(id)
       withContext(Dispatchers.Main) {
-        if (result != null) {
-          if (result > 0) {
-            isFavorited = true
-            binding.btnFavorite.setImageResource(R.drawable.ic_favorite_fill)
-          } else {
-            binding.btnFavorite.setImageResource(R.drawable.ic_favorite_no_fill)
-            isFavorited = false
-          }
+        if (result) {
+          isFavorite = true
+          binding.btnFavorite.setImageResource(R.drawable.ic_favorite_fill)
+        } else {
+          binding.btnFavorite.setImageResource(R.drawable.ic_favorite_no_fill)
+          isFavorite = false
         }
       }
     }
   }
 
-  private fun btnFavoriteAction(userId: Int, username: String, avatarURL: String) {
+  private fun btnFavoriteAction(fav: FavoriteEntity) {
     binding.btnFavorite.setOnClickListener {
-      if (!isFavorited) {
-        isFavorited = true
-        detailViewModel.insertToFavorite(userId, username, avatarURL)
+      if (!isFavorite) { // add user to favorite
+        isFavorite = true
+        detailViewModel.insertToFavorite(fav)
+        showToast(getString(R.string.added))
         binding.btnFavorite.setImageResource(R.drawable.ic_favorite_fill)
-      } else {
-        showAlertDialog(userId)
+      } else { // delete user from favorite
+        showAlertDialog(fav)
       }
     }
   }
 
-  private fun showAlertDialog(id: Int) {
+  private fun showAlertDialog(fav: FavoriteEntity) {
     val alertDialogBuilder = AlertDialog.Builder(this)
     with(alertDialogBuilder) {
       setTitle(R.string.delete)
       setMessage(R.string.message_delete)
       setCancelable(false)
       setPositiveButton(getString(R.string.yes)) { _, _ ->
-        isFavorited = false
+        isFavorite = false
         binding.btnFavorite.setImageResource(R.drawable.ic_favorite_no_fill)
-        detailViewModel.removeFromFavorite(id) // delete user from favorite
+        detailViewModel.removeFromFavorite(fav) // delete user from favorite
+
         showToast(getString(R.string.deleted))
         finish()
       }
@@ -205,5 +182,4 @@ class DetailUserActivity : AppCompatActivity() {
       R.string.followers
     )
   }
-
 }

@@ -9,13 +9,13 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "favorite")
 class FavoriteEntity(
-  @field:ColumnInfo(name = "id")
-  @field:PrimaryKey
+  @PrimaryKey
+  @ColumnInfo(name = "id")
   val id: Int,
 
-  @field:ColumnInfo(name = "login")
+  @ColumnInfo(name = "login")
   val login: String,
 
-  @field:ColumnInfo(name = "avatar_url")
-  val avatar_url: String,
-): Parcelable
+  @ColumnInfo(name = "avatar_url")
+  val avatar_url: String
+) : Parcelable

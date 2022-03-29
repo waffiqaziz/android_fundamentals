@@ -14,7 +14,8 @@
     <!-- Status bar color. -->
     <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
-    <!-- Customize your theme here. -->
+    <!--  ActionBar/TopBar  -->
+    <item name="colorSurface">?attr/colorPrimaryVariant</item>
 
     <!--  SnackBar Style  -->
     <item name="snackbarStyle">@style/snackBar</item>

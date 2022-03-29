@@ -8,6 +8,7 @@ import com.dicoding.githubuser.data.local.entity.FavoriteEntity
 
 @Database(entities = [FavoriteEntity::class], version = 1, exportSchema = false)
 abstract class FavoriteDatabase : RoomDatabase() {
+
   abstract fun favoriteDao(): FavoriteDao
 
   companion object {
@@ -15,7 +16,7 @@ abstract class FavoriteDatabase : RoomDatabase() {
     private var instance: FavoriteDatabase? = null
 
     @JvmStatic
-    fun getInstance(context: Context): FavoriteDatabase =
+    fun getInstance(context: Context) =
       instance ?: synchronized(this) {
         instance ?: Room.databaseBuilder(
           context.applicationContext,

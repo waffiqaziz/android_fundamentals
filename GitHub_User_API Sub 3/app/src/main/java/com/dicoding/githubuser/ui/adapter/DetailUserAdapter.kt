@@ -20,8 +20,8 @@ class DetailUserAdapter(
   }
 
   inner class ViewHolder(private var binding: ItemRowUserBinding) :
-    RecyclerView.ViewHolder(binding.root){
-    fun onBind(user: UserResponse){
+    RecyclerView.ViewHolder(binding.root) {
+    fun onBind(user: UserResponse) {
       Glide.with(binding.root.context)
         .load(user.avatarUrl) // URL Avatar
         .circleCrop() // change avatar to circle

@@ -29,11 +29,12 @@ class SettingActivity : AppCompatActivity() {
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     val pref = SettingPreferences.getInstance(dataStore)
-    val viewModel = ViewModelProvider(this,
+    val viewModel = ViewModelProvider(
+      this,
       SettingViewModelFactory(pref)
     )[SettingPreferencesViewModel::class.java]
 
-    viewModel.getThemeSettings().observe(this) { isDarkModeActive: Boolean ->
+    viewModel.getThemeSettings().observe(this) { isDarkModeActive ->
       if (isDarkModeActive) {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
         binding.switchTheme.isChecked = true

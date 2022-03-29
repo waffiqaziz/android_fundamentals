@@ -14,9 +14,11 @@ import com.dicoding.githubuser.ui.activity.DetailUserActivity
 class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavViewHolder>() {
 
   private val listFav = ArrayList<FavoriteEntity>()
+
   fun setListFav(listFav: List<FavoriteEntity>) {
     val diffCallback = FavoriteDiffCallback(this.listFav, listFav)
     val diffResult = DiffUtil.calculateDiff(diffCallback)
+
     this.listFav.clear()
     this.listFav.addAll(listFav)
     diffResult.dispatchUpdatesTo(this)
@@ -30,6 +32,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavViewHolder>() {
   override fun onBindViewHolder(holder: FavViewHolder, position: Int) {
     holder.bind(listFav[position])
   }
+
+  override fun getItemCount() = listFav.size
 
   inner class FavViewHolder(private val binding: ItemRowUserBinding) :
     RecyclerView.ViewHolder(binding.root) {
@@ -49,6 +53,4 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavViewHolder>() {
       }
     }
   }
-
-  override fun getItemCount() =  listFav.size
 }

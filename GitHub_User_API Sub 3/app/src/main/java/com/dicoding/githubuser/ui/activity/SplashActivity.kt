@@ -39,7 +39,7 @@ class SplashActivity : AppCompatActivity() {
     requestWindowFeature(Window.FEATURE_NO_TITLE)// hide title
     supportActionBar?.hide() //hide title bar
 
-    //enable full screen
+    @Suppress("DEPRECATION")
     this.window.setFlags(
       WindowManager.LayoutParams.FLAG_FULLSCREEN,
       WindowManager.LayoutParams.FLAG_FULLSCREEN
@@ -48,9 +48,12 @@ class SplashActivity : AppCompatActivity() {
     setContentView(R.layout.activity_splash)
   }
 
-  private fun checkTheme(){
+  private fun checkTheme() {
     val pref = SettingPreferences.getInstance(dataStore)
-    val viewModel = ViewModelProvider(this,SettingViewModelFactory(pref))[SettingPreferencesViewModel::class.java]
+    val viewModel = ViewModelProvider(
+      this,
+      SettingViewModelFactory(pref)
+    )[SettingPreferencesViewModel::class.java]
 
     // get last theme (dark mode/light mode)
     viewModel.getThemeSettings().observe(this) {

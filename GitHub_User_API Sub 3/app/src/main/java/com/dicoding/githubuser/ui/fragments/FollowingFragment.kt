@@ -37,13 +37,13 @@ class FollowingFragment : Fragment() {
     val args = arguments
     val username = args?.getString(DetailUserActivity.EXTRA_USER).toString()
 
-    followingViewModel.itemFollowing.observe(viewLifecycleOwner){
+    followingViewModel.itemFollowing.observe(viewLifecycleOwner) {
       setFollowing(it)
     }
 
     setupRecycleView()
 
-    followingViewModel.isLoading.observe(viewLifecycleOwner){
+    followingViewModel.isLoading.observe(viewLifecycleOwner) {
       showLoading(it)
     }
 

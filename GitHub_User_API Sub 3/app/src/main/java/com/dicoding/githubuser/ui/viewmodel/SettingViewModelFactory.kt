@@ -1,12 +1,11 @@
 package com.dicoding.githubuser.ui.viewmodel
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.dicoding.githubuser.di.Injection
 import com.dicoding.githubuser.utils.SettingPreferences
 
-class SettingViewModelFactory(private val pref: SettingPreferences) : ViewModelProvider.NewInstanceFactory() {
+class SettingViewModelFactory(private val pref: SettingPreferences) :
+  ViewModelProvider.NewInstanceFactory() {
 
   @Suppress("UNCHECKED_CAST")
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
@@ -15,5 +14,4 @@ class SettingViewModelFactory(private val pref: SettingPreferences) : ViewModelP
     }
     throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
   }
-
 }

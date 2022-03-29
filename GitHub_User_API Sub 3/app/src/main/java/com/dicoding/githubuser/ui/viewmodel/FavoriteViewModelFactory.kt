@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 
 class FavoriteViewModelFactory private constructor(private val mApplication: Application) :
   ViewModelProvider.NewInstanceFactory() {
+
   @Suppress("UNCHECKED_CAST")
   override fun <T : ViewModel> create(modelClass: Class<T>): T {
     if (modelClass.isAssignableFrom(FavoriteViewModel::class.java)) {

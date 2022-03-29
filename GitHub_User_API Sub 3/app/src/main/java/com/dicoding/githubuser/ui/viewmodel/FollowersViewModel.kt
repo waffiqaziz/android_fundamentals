@@ -38,6 +38,7 @@ class FollowersViewModel : ViewModel() {
             Log.e(TAG, "onFailure: ${response.message()}")
           }
         }
+
         override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
           _isLoading.value = false
           _snackbarText.value = Event(FAILED)

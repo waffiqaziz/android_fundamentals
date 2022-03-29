@@ -21,8 +21,8 @@ class UserAdapter(
   }
 
   class ViewHolder(private var binding: ItemRowUserBinding) :
-    RecyclerView.ViewHolder(binding.root){
-    fun onBind(user: ItemsItem, listener: OnItemClickCallback){
+    RecyclerView.ViewHolder(binding.root) {
+    fun onBind(user: ItemsItem, listener: OnItemClickCallback) {
       Glide.with(binding.root.context)
         .load(user.avatarUrl) // URL Avatar
         .circleCrop() // change avatar to circle
@@ -37,7 +37,7 @@ class UserAdapter(
   }
 
   override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-    holder.onBind(listUser[position],listener)
+    holder.onBind(listUser[position], listener)
   }
 
   interface OnItemClickCallback {
