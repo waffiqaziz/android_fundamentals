@@ -10,7 +10,7 @@ import com.dicoding.githubuser.ui.fragments.FollowingFragment
 class SectionsPagerAdapter(activity: AppCompatActivity, data: Bundle) :
   FragmentStateAdapter(activity) {
 
-  private var fragmentBundle: Bundle = data
+  private var fragmentBundle = data
 
   override fun createFragment(position: Int): Fragment {
     var fragment: Fragment? = null

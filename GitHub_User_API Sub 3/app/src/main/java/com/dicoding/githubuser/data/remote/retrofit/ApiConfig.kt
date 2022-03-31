@@ -1,5 +1,6 @@
 package com.dicoding.githubuser.data.remote.retrofit
 
+import com.dicoding.githubuser.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -14,7 +15,7 @@ class ApiConfig {
         .addInterceptor(loggingInterceptor)
         .build()
       val retrofit = Retrofit.Builder()
-        .baseUrl("https://api.github.com/")
+        .baseUrl(BuildConfig.API_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()

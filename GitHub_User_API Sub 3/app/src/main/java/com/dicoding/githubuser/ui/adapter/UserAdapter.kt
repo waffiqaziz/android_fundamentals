@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.githubuser.R
 import com.dicoding.githubuser.data.remote.response.ItemsItem
 import com.dicoding.githubuser.databinding.ItemRowUserBinding
 
@@ -25,6 +26,8 @@ class UserAdapter(
     fun onBind(user: ItemsItem, listener: OnItemClickCallback) {
       Glide.with(binding.root.context)
         .load(user.avatarUrl) // URL Avatar
+        .placeholder(R.drawable.ic_placeholder)
+        .error(R.drawable.ic_broken_image)
         .circleCrop() // change avatar to circle
         .into(binding.imgItemAvatar)
       binding.tvItemName.text = user.login

@@ -27,7 +27,7 @@ class SplashActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    val timeToWait = 2000L // 2 second
+
 
     checkTheme()
 
@@ -60,5 +60,9 @@ class SplashActivity : AppCompatActivity() {
       if (it) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
       else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
+  }
+
+  companion object{
+    const val timeToWait = 2000L // 2 second
   }
 }

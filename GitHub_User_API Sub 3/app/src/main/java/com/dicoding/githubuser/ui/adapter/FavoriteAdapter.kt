@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.dicoding.githubuser.R
 import com.dicoding.githubuser.data.local.entity.FavoriteEntity
 import com.dicoding.githubuser.databinding.ItemRowUserBinding
 import com.dicoding.githubuser.helper.FavoriteDiffCallback
@@ -42,6 +43,8 @@ class FavoriteAdapter : RecyclerView.Adapter<FavoriteAdapter.FavViewHolder>() {
         tvItemName.text = fav.login
         Glide.with(imgItemAvatar)
           .load(fav.avatar_url) // URL Avatar
+          .placeholder(R.drawable.ic_placeholder)
+          .error(R.drawable.ic_broken_image)
           .circleCrop() // change avatar to circle
           .into(imgItemAvatar)
 
