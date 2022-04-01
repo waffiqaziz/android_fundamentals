@@ -9,18 +9,28 @@ import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.githubuser.databinding.ActivityMainBinding
 import com.dicoding.githubuser.data.remote.response.ItemsItem
+import com.dicoding.githubuser.databinding.ActivityMainBinding
 import com.dicoding.githubuser.ui.activity.DetailUserActivity
 import com.dicoding.githubuser.ui.activity.FavoriteActivity
 import com.dicoding.githubuser.ui.activity.SettingActivity
+import androidx.datastore.core.DataStore
 import com.dicoding.githubuser.ui.adapter.UserAdapter
 import com.dicoding.githubuser.ui.viewmodel.MainViewModel
+import com.dicoding.githubuser.ui.viewmodel.SettingPreferencesViewModel
+import com.dicoding.githubuser.ui.viewmodel.SettingViewModelFactory
+import com.dicoding.githubuser.utils.SettingPreferences
 import com.google.android.material.snackbar.Snackbar
 
+private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,7 +39,10 @@ class MainActivity : AppCompatActivity() {
   private val mainViewModel by viewModels<MainViewModel>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
+    checkTheme()
     super.onCreate(savedInstanceState)
+    installSplashScreen()
+
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
@@ -45,15 +58,7 @@ class MainActivity : AppCompatActivity() {
       showLoading(it)
     }
 
-    mainViewModel.snackBarText.observe(this) {
-      it.getContentIfNotHandled()?.let { snackBarText ->
-        Snackbar.make(
-          findViewById(R.id.rv_users),
-          snackBarText,
-          Snackbar.LENGTH_SHORT
-        ).show()
-      }
-    }
+    showSnackBar()
   }
 
   private fun setupRecycleView() {
@@ -127,6 +132,18 @@ class MainActivity : AppCompatActivity() {
     binding.rvUsers.adapter = adapter
   }
 
+  private fun showSnackBar(){
+    mainViewModel.snackBarText.observe(this) {
+      it.getContentIfNotHandled()?.let { snackBarText ->
+        Snackbar.make(
+          findViewById(R.id.rv_users),
+          snackBarText,
+          Snackbar.LENGTH_SHORT
+        ).show()
+      }
+    }
+  }
+
   private fun showLoading(isLoading: Boolean) {
     binding.apply {
       if (isLoading) {
@@ -136,6 +153,20 @@ class MainActivity : AppCompatActivity() {
         progressBar.visibility = View.GONE
         rvUsers.visibility = View.VISIBLE
       }
+    }
+  }
+
+  private fun checkTheme() {
+    val pref = SettingPreferences.getInstance(dataStore)
+    val viewModel = ViewModelProvider(
+      this,
+      SettingViewModelFactory(pref)
+    )[SettingPreferencesViewModel::class.java]
+
+    // get last theme (dark mode/light mode)
+    viewModel.getThemeSettings().observe(this) {
+      if (it) AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+      else AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
     }
   }
 }

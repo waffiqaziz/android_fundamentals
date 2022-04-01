@@ -34,15 +34,35 @@ class DetailUserActivity : AppCompatActivity() {
     binding = ActivityDetailUserBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
+    setupActionBar()
+
+    val fav = getParcelableExtra()
+
+    setUserDetail(fav.login)
+
+    // check is user has been favorite/no
+    isFavorite = false
+    checkIsFavorite(fav.id)
+
+    showSnackBar()
+
+    setupSectionAdapterWithBundle(fav.login)
+
+    btnFavoriteAction(fav)
+  }
+
+  private fun setupActionBar(){
     supportActionBar?.title = getString(R.string.detail_user)
     supportActionBar?.setDisplayHomeAsUpEnabled(true)
+  }
 
-    // get data user from MainActivity/FavoriteActivity
+  private fun getParcelableExtra(): FavoriteEntity{
     lateinit var user: ItemsItem
     lateinit var userFav: FavoriteEntity
     lateinit var username: String
     lateinit var avatarURL: String
     val userId: Int
+
     if (intent.getParcelableExtra<ItemsItem>(EXTRA_USER) != null) {
       user = intent.getParcelableExtra<ItemsItem>(EXTRA_USER) as ItemsItem
       username = user.login
@@ -54,15 +74,10 @@ class DetailUserActivity : AppCompatActivity() {
       username = userFav.login
       userId = userFav.id
     }
-    val fav = FavoriteEntity(userId, username, avatarURL)
+    return FavoriteEntity(userId, username, avatarURL)
+  }
 
-    // set user detail
-    setUserDetail(fav.login)
-
-    // check is user has been favorite/no
-    isFavorite = false
-    checkIsFavorite(fav.id)
-
+  private fun showSnackBar(){
     detailViewModel.snackBarText.observe(this) {
       it.getContentIfNotHandled()?.let { snackBarText: String ->
         val snackBar =
@@ -73,17 +88,12 @@ class DetailUserActivity : AppCompatActivity() {
         snackBar.show()
       }
     }
-
-    // put username to bundle
-    val bundle = Bundle()
-    bundle.putString(EXTRA_USER, fav.login)
-
-    setAdapter(bundle)
-
-    btnFavoriteAction(fav)
   }
 
-  private fun setAdapter(bundle: Bundle) {
+  private fun setupSectionAdapterWithBundle(username: String) {
+    val bundle = Bundle()
+    bundle.putString(EXTRA_USER, username)
+
     val sectionsPagerAdapter = SectionsPagerAdapter(this, bundle)
     binding.viewPager.adapter = sectionsPagerAdapter
     TabLayoutMediator(binding.tabsLayout, binding.viewPager) { tab, position ->

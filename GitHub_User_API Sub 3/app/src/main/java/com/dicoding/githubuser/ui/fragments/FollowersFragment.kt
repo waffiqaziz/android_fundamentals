@@ -52,6 +52,10 @@ class FollowersFragment : Fragment() {
     // find user followers
     followersViewModel.findFollowers(username)
 
+    showSnackBar()
+  }
+
+  private fun showSnackBar(){
     followersViewModel.snackBarText.observe(viewLifecycleOwner) {
       it.getContentIfNotHandled()?.let { snackBarText ->
         Snackbar.make(
