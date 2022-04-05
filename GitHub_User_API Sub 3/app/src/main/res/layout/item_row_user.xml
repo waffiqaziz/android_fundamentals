@@ -15,8 +15,8 @@
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp"
-    android:background="?attr/itemBackground">
+    android:background="?attr/itemBackground"
+    android:padding="8dp">
 
     <ImageView
       android:id="@+id/img_item_avatar"
@@ -26,10 +26,11 @@
       android:layout_marginTop="8dp"
       android:layout_marginBottom="8dp"
       android:contentDescription="@string/avatar_user"
+      android:transitionName="profile"
       card_view:layout_constraintBottom_toBottomOf="parent"
       card_view:layout_constraintStart_toStartOf="parent"
       card_view:layout_constraintTop_toTopOf="parent"
-      tools:src="@tools:sample/avatars"/>
+      tools:src="@tools:sample/avatars" />
 
     <TextView
       android:id="@+id/tv_item_name"
@@ -39,6 +40,7 @@
       android:layout_marginStart="16dp"
       android:layout_marginEnd="8dp"
       android:textSize="20sp"
+      android:transitionName="name"
       card_view:layout_constraintBottom_toBottomOf="parent"
       card_view:layout_constraintEnd_toEndOf="parent"
       card_view:layout_constraintStart_toEndOf="@+id/img_item_avatar"

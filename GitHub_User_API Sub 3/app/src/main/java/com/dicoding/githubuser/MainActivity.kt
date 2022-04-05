@@ -1,5 +1,6 @@
 package com.dicoding.githubuser
 
+import android.app.Activity
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
@@ -11,7 +12,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.SearchView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 import androidx.lifecycle.ViewModelProvider
@@ -22,7 +25,6 @@ import com.dicoding.githubuser.databinding.ActivityMainBinding
 import com.dicoding.githubuser.ui.activity.DetailUserActivity
 import com.dicoding.githubuser.ui.activity.FavoriteActivity
 import com.dicoding.githubuser.ui.activity.SettingActivity
-import androidx.datastore.core.DataStore
 import com.dicoding.githubuser.ui.adapter.UserAdapter
 import com.dicoding.githubuser.ui.viewmodel.MainViewModel
 import com.dicoding.githubuser.ui.viewmodel.SettingPreferencesViewModel
@@ -40,8 +42,8 @@ class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     checkTheme()
-    super.onCreate(savedInstanceState)
     installSplashScreen()
+    super.onCreate(savedInstanceState)
 
     binding = ActivityMainBinding.inflate(layoutInflater)
     setContentView(binding.root)
@@ -126,7 +128,9 @@ class MainActivity : AppCompatActivity() {
         override fun onItemClicked(data: ItemsItem) {
           val moveUserDetail = Intent(this@MainActivity, DetailUserActivity::class.java)
           moveUserDetail.putExtra(DetailUserActivity.EXTRA_USER, data)
-          startActivity(moveUserDetail)
+
+          // goto DetailActivity with an animation(explode)
+          startActivity(moveUserDetail, ActivityOptionsCompat.makeSceneTransitionAnimation(this@MainActivity,).toBundle())
         }
       })
     binding.rvUsers.adapter = adapter
