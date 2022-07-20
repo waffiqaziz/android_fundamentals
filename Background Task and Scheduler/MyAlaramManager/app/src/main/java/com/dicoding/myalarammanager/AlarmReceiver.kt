@@ -52,6 +52,8 @@ class AlarmReceiver : BroadcastReceiver() {
     val dateArray = date.split("-").toTypedArray()
     val timeArray = time.split(":").toTypedArray()
     val calendar = Calendar.getInstance()
+
+//    Log.d("cekkkkkk ", timeArray[0])
     calendar.set(Calendar.YEAR, Integer.parseInt(dateArray[0]))
     calendar.set(Calendar.MONTH, Integer.parseInt(dateArray[1]) - 1)
     calendar.set(Calendar.DAY_OF_MONTH, Integer.parseInt(dateArray[2]))
@@ -106,11 +108,13 @@ class AlarmReceiver : BroadcastReceiver() {
     val notificationManagerCompat =
       context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
     val alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+    val notificationStyle = NotificationCompat.InboxStyle() // disable it
 
     val builder = NotificationCompat.Builder(context, channelId)
       .setSmallIcon(R.drawable.ic_access_time_black)
       .setContentTitle(title)
       .setContentText(message)
+      .setStyle(notificationStyle)
       .setColor(ContextCompat.getColor(context, android.R.color.transparent))
       .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
       .setSound(alarmSound)
